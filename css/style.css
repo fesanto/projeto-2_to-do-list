@@ -61,7 +61,6 @@ body{
     padding: 10px;
     border-radius: 5px;
     text-align: center;
-      
 }
 
 .list-composer__button{
@@ -130,7 +129,11 @@ span{
     align-items: center;
     font-size: 14px;
     width: 100%;
+}
+
+#span-content{
     border-bottom: solid 1px lightgrey;
+    color: #000000;
 }
 
 /*** MEDIA QUERIES ***/
