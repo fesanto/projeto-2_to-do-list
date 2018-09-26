@@ -15,17 +15,17 @@ addButton.addEventListener("click", function(event){
 
     textArea.innerHTML += `<p class="list-area__text">${input.value}</p>
                         <a href="#" id="check"><i class="far fa-check-circle"></i></a>
-                        <a href="#" id="del"><i class="far fa-times-circle"></i></a>`
+                        <a href="#" onclick="del (this)" id="del"><i class="far fa-times-circle"></i></a>`
 
     textBox.appendChild(textArea);
     textBox.style.display = "block";
     input.value = null;
 });
 
-const check = document.getElementById("check");
+function del(ex){
+    let d = ex.parentNode;
+    d.remove();
+}
 
-check.addEventListener("click", function(event){
-    event.preventDefault();
-    console.log("clicou");
-});
+
 
