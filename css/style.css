@@ -131,7 +131,7 @@ span{
     width: 100%;
 }
 
-#span-content{
+.span-content{
     border-bottom: solid 1px lightgrey;
     color: #000000;
 }
