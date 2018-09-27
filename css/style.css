@@ -10,6 +10,11 @@ body{
     font-family: "Open Sans", sans-serif;
 }
 
+/*proibindo de mexer no tamanho da textarea*/ 
+textarea {
+    resize:none;
+}
+
 .container{
     background-color: white;
     width: 70%;
@@ -132,8 +137,15 @@ span{
 }
 
 .span-content{
+    background-color:yellowgreen;
     border-bottom: solid 1px lightgrey;
     color: #000000;
+    margin: 8px 0;
+    position: relative;
+}
+
+.dragover{
+    border-bottom: 3px solid red;
 }
 
 /*** MEDIA QUERIES ***/

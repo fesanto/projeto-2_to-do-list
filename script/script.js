@@ -6,19 +6,23 @@ const addButton = document.querySelector(".list-composer__button");
 addButton.addEventListener("click", function(event){
     event.preventDefault();
     
-    //validando para não aceitar input vazio ou nulo
-    if(input.value === undefined || input.value === null || input.value === "" || input.value === " "){
+    //validando para não aceitar input vazio ou nulo ou inicia
+    const regex = /\w+/ig;
+    if(!regex.test(input.value)){
         input.focus();
         return false;
     }
+
     //focando o local onde colocaremos as tarefas inputadas
     const textBox = document.querySelector(".list-area__box");
     //criando a tag onde colocaremos as tarefas inputadas
-    const textArea = document.createElement("span");
+    const textArea = document.createElement("div");
     //criando o texto HTML que deverá estar dentro da tag criada acima
-    textArea.innerHTML += `<span class="span-content"><p class="list-area__text">${input.value}</p>
-            <a href="#" onclick="check(this)" id="check"><i class="far fa-check-circle"></i></a>
-            <a href="#" onclick="del(this)" id="del"><i class="far fa-times-circle"></i></a></span>`
+    textArea.innerHTML += `<span class="span-content" id="${(((1+Math.random())*0x10000)|0).toString(16).substring(1)}" draggable="true" ondragstart="drag(event)" ondrop="drop(event)" ondragover="allowDrop(event)" ondragenter="dragStart(event)" ondragleave="dragEnd(event)">
+    <p class="list-area__text">${input.value}</p>
+        <a href="#" onclick="check(this)"><i class="far fa-check-circle"></i></a>
+        <a href="#" onclick="dell(this)"><i class="far fa-times-circle"></i></a>
+        </span>`
 
     //colocando a tag span dentro do local onde ficarão as tarefas
     textBox.appendChild(textArea);
@@ -35,6 +39,7 @@ addButton.addEventListener("click", function(event){
         textArea.remove();
     });
 });
+
 
 
 //deletando separadamente as tarefas incluidas
@@ -77,3 +82,28 @@ function checkAll(){
     contador++
 }
 
+function allowDrop(ev) {
+    ev.preventDefault();
+}
+
+function drag(ev) {
+    ev.dataTransfer.setData("text", ev.target.id);
+}
+
+function drop(ev) {
+    ev.preventDefault();
+    let data = ev.dataTransfer.getData("text");
+    ev.target.parentNode.insertAdjacentElement("afterEnd", document.getElementById(data));
+
+}
+
+function dragStart(ev) {
+    ev.preventDefault();
+    ev.target.parentNode.classList.add("dragover")
+}
+
+function dragEnd(ev) {
+    ev.preventDefault();
+    ev.target.parentNode.classList.remove("dragover")
+
+}
