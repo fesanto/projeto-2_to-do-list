@@ -145,7 +145,7 @@ span{
 }
 
 .dragover{
-    border-bottom: 3px solid red;
+    border-bottom: 3px solid grey;
 }
 
 /*** MEDIA QUERIES ***/
